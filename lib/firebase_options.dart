@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '768490035747',
     projectId: 'interiorx-3c5a6',
     storageBucket: 'interiorx-3c5a6.appspot.com',
+    androidClientId: '768490035747-tec21lq5f3n445gb3lp4qc8435oemqkr.apps.googleusercontent.com',
+    iosClientId: '768490035747-6df2r459kov0sj569rp2f5h7i27v17vr.apps.googleusercontent.com',
     iosBundleId: 'com.example.interiorx',
   );
 
@@ -72,6 +74,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '768490035747',
     projectId: 'interiorx-3c5a6',
     storageBucket: 'interiorx-3c5a6.appspot.com',
+    androidClientId: '768490035747-tec21lq5f3n445gb3lp4qc8435oemqkr.apps.googleusercontent.com',
+    iosClientId: '768490035747-6df2r459kov0sj569rp2f5h7i27v17vr.apps.googleusercontent.com',
     iosBundleId: 'com.example.interiorx',
   );
 
@@ -83,4 +87,5 @@ class DefaultFirebaseOptions {
     authDomain: 'interiorx-3c5a6.firebaseapp.com',
     storageBucket: 'interiorx-3c5a6.appspot.com',
   );
+
 }
