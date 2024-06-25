@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interiorx/screens/checkout/checkout_screen.dart';
+import 'package:interiorx/screens/profile/profile_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static String routeName = "/splash";
@@ -26,6 +27,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 Navigator.pushNamed(context, CheckoutScreen.routeName);
               },
               child: const Text("Checkout Page"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, ProfileScreen.routeName);
+              },
+              child: const Text("Profile Page"),
             ),
           ],
         ),

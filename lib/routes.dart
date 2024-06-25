@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 // import 'screens/init_screen.dart';
 // import 'screens/login_success/login_success_screen.dart';
 // import 'screens/otp/otp_screen.dart';
-// import 'screens/profile/profile_screen.dart';
+import 'screens/profile/profile_screen.dart';
 // import 'screens/sign_in/sign_in_screen.dart';
 // import 'screens/sign_up/sign_up_screen.dart';
 import 'screens/splash/splash_screen.dart';
@@ -30,6 +30,6 @@ final Map<String, WidgetBuilder> routes = {
   // ProductsScreen.routeName: (context) => const ProductsScreen(),
   // DetailsScreen.routeName: (context) => const DetailsScreen(),
   // CartScreen.routeName: (context) => const CartScreen(),
-  // ProfileScreen.routeName: (context) => const ProfileScreen(),
+  ProfileScreen.routeName: (context) => const ProfileScreen(),
   CheckoutScreen.routeName: (context) => const CheckoutScreen(),
 };
