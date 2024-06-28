@@ -12,15 +12,11 @@ import 'theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding
-      .ensureInitialized(); // Ensure Flutter framework is initialized
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter framework is initialized
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
