@@ -243,7 +243,7 @@ class CartScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '${cartProvider.totalQuantity} items',
+                  '${cartProvider.cartItems.length} items',
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text('Total: \$ ${cartProvider.totalPrice.toStringAsFixed(3)}',
