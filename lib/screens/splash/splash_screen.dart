@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:interiorx/screens/cart/cart_screen.dart';
 import 'package:interiorx/screens/cart/demo_product_UI.dart';
 import 'package:interiorx/screens/checkout/checkout_screen.dart';
+import 'package:interiorx/screens/login/login.dart';
+import 'package:interiorx/screens/profile/profile_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static String routeName = "/splash";
@@ -44,6 +46,18 @@ class _SplashScreenState extends State<SplashScreen> {
                 Navigator.pushNamed(context, CartScreen.routeName);
               },
               child: const Text("Cart"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, ProfileScreen.routeName);
+              },
+              child: const Text("Profile Page"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, LoginScreen.routeName);
+              },
+              child: const Text("Login Page"),
             ),
           ],
         ),

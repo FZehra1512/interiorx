@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "768490035747",
+    "project_id": "interiorx-3c5a6",
+    "storage_bucket": "interiorx-3c5a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768490035747:android:cf70a03a374b8b6a0eaf96",
+        "android_client_info": {
+          "package_name": "com.example.interiorx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768490035747-tec21lq5f3n445gb3lp4qc8435oemqkr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.interiorx",
+            "certificate_hash": "9cbf854a76e715c698bc8927f052a1d6d95704f1"
+          }
+        },
+        {
+          "client_id": "768490035747-g6s6lfmo7c2h7j83hem1irlkkqehoefl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxAvqxcZQEoSlTieOmTr5-mLjmU2c6o20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768490035747-g6s6lfmo7c2h7j83hem1irlkkqehoefl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "768490035747-6df2r459kov0sj569rp2f5h7i27v17vr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.interiorx"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
