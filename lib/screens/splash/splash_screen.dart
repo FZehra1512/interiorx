@@ -4,6 +4,8 @@ import 'package:interiorx/screens/cart/demo_product_UI.dart';
 import 'package:interiorx/screens/checkout/checkout_screen.dart';
 import 'package:interiorx/screens/login/login.dart';
 import 'package:interiorx/screens/profile/profile_screen.dart';
+import 'package:interiorx/models/product.dart';
+import 'package:interiorx/screens/product/components/product_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static String routeName = "/splash";
@@ -58,6 +60,22 @@ class _SplashScreenState extends State<SplashScreen> {
                 Navigator.pushNamed(context, LoginScreen.routeName);
               },
               child: const Text("Login Page"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  ProductDescriptionScreen.routeName,
+                  arguments: ProductArguments(
+                    productName: 'Decorative Wall Pannel',
+                    productDescription: 'Elevate your interior with sophisticated and stylish wall panels, perfect for adding texture and visual interest to any space."',
+                    productPrice: 50,
+                    imageUrl: 'https://tse1.mm.bing.net/th?id=OIP.5laJbazcaMnI8wNtHnwZ0AHaHa&pid=Api&P=0&h=220', // Replace with actual image URL
+                    rating: 4.5,
+                  ),
+                );
+              },
+              child: const Text("Product Description Page"),
             ),
           ],
         ),
