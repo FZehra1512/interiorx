@@ -1,4 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:interiorx/screens/home/home.dart';
+import 'package:interiorx/screens/login/login.dart';
+import 'package:interiorx/screens/signup/signup.dart';
 // import 'package:shop_app/screens/products/products_screen.dart';
 
 // import 'screens/cart/cart_screen.dart';
@@ -19,6 +22,8 @@ import 'screens/profile/my_account.dart';
 // import 'screens/sign_in/sign_in_screen.dart';
 // import 'screens/sign_up/sign_up_screen.dart';
 import 'screens/splash/splash_screen.dart';
+import 'screens/cart/demo_product_UI.dart';
+import 'screens/cart/cart_screen.dart';
 import 'screens/checkout/checkout_screen.dart';
 
 // We use name route
@@ -40,6 +45,10 @@ final Map<String, WidgetBuilder> routes = {
   // Profile routes
   ProfileScreen.routeName: (context) => const ProfileScreen(),
   MyAccount.routeName: (context) => const MyAccount(),
-
+  DemoProductUIScreen.routeName: (context) => const DemoProductUIScreen(),
+  CartScreen.routeName: (context) => const CartScreen(),
   CheckoutScreen.routeName: (context) => const CheckoutScreen(),
+  HomeScreen.routeName: (context) => const HomeScreen(),
+  LoginScreen.routeName: (context) => const LoginScreen(),
+  SignupScreen.routeName: (context) => const SignupScreen(),
 };
