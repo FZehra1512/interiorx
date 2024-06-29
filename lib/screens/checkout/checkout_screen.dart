@@ -10,8 +10,8 @@ class CheckoutScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Checkout'),
       ),
-      body: Center(
-        child: const Text('Welcome to Checkout Screen'),
+      body: const Center(
+        child: Text('Welcome to Checkout Screen'),
       ),
     );
   }
