@@ -9,7 +9,13 @@ import 'package:flutter/widgets.dart';
 // import 'screens/init_screen.dart';
 // import 'screens/login_success/login_success_screen.dart';
 // import 'screens/otp/otp_screen.dart';
+
+// Profile imports
 import 'screens/profile/profile_screen.dart';
+import 'screens/profile/my_account.dart';
+//import 'screens/profile/my_orders.dart';
+//import 'screens/profile/help_center.dart';
+
 // import 'screens/sign_in/sign_in_screen.dart';
 // import 'screens/sign_up/sign_up_screen.dart';
 import 'screens/splash/splash_screen.dart';
@@ -30,6 +36,10 @@ final Map<String, WidgetBuilder> routes = {
   // ProductsScreen.routeName: (context) => const ProductsScreen(),
   // DetailsScreen.routeName: (context) => const DetailsScreen(),
   // CartScreen.routeName: (context) => const CartScreen(),
+
+  // Profile routes
   ProfileScreen.routeName: (context) => const ProfileScreen(),
+  MyAccount.routeName: (context) => const MyAccount(),
+
   CheckoutScreen.routeName: (context) => const CheckoutScreen(),
 };

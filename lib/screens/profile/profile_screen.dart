@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:interiorx/components/custom_app_bar.dart';
 import 'package:interiorx/screens/profile/components/menu_card.dart';
 import 'package:interiorx/screens/profile/components/profile_pic.dart';
+import 'package:interiorx/screens/profile/my_account.dart';
+import 'package:interiorx/screens/profile/my_orders.dart';
 
 class ProfileScreen extends StatelessWidget {
   static String routeName = "/profile";
@@ -12,23 +15,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Padding(
-          padding: EdgeInsets.all(100),
-          child: Text(
-            'Profile',
-            style: TextStyle(fontSize: 20),
-          ),
-        ),
-        leading: Padding(
-          padding: const EdgeInsets.all(30),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            size: 25,
-          ),
-        ),
-        toolbarHeight: 120,
-      ),
+      appBar: CustomAppBar(title: 'Profile'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 30),
         child: Column(
@@ -38,12 +25,18 @@ class ProfileScreen extends StatelessWidget {
             MenuCard(
               text: "My Account",
               icon: Icon(Icons.person),
-              press: () => {},
+              press: () => {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const MyAccount()))
+              },
             ),
             MenuCard(
-              text: "Notifications",
-              icon: Icon(Icons.notification_important),
-              press: () {},
+              text: "My Orders",
+              icon: Icon(Icons.add_box),
+              press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const MyOrders()));
+              },
             ),
             MenuCard(
               text: "Settings",
