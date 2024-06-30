@@ -10,6 +10,7 @@ class AppTheme {
       appBarTheme: const AppBarTheme(
           color: Colors.white,
           elevation: 0,
+          scrolledUnderElevation: 0,
           iconTheme: IconThemeData(color: kTextColor),
           titleTextStyle: TextStyle(color: kTextColor)),
       textTheme: const TextTheme(
@@ -45,3 +46,15 @@ const OutlineInputBorder outlineInputBorder = OutlineInputBorder(
   borderSide: BorderSide(color: kTextColor),
   gapPadding: 10,
 );
+
+IconButton buildBackIconButton(BuildContext context) {
+  return IconButton(
+    onPressed: () => Navigator.pop(context),
+    icon: const Icon(
+      Icons.arrow_back_ios_new_rounded,
+      color: kTextColor,
+      size: 22,
+    ),
+    style: IconButton.styleFrom(backgroundColor: kSecondaryColor,),
+  );
+}

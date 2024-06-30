@@ -11,9 +11,9 @@ class ProfilePic extends StatelessWidget {
     return CircleAvatar(
       child: Icon(
         Icons.person,
-        size: 120,
+        size: 70,
       ),
-      maxRadius: 70,
+      maxRadius: 50,
     );
   }
 }
