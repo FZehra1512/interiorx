@@ -5,7 +5,7 @@ import 'package:interiorx/screens/checkout/checkout_screen.dart';
 import 'package:interiorx/screens/login/login.dart';
 import 'package:interiorx/screens/profile/profile_screen.dart';
 import 'package:interiorx/models/product.dart';
-import 'package:interiorx/screens/product/components/product_screen.dart';
+import 'package:interiorx/screens/product/components/product_description_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static String routeName = "/splash";

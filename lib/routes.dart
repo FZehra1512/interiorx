@@ -3,7 +3,7 @@ import 'package:interiorx/screens/home/home.dart';
 import 'package:interiorx/screens/login/login.dart';
 import 'package:interiorx/screens/signup/signup.dart';
 // import 'package:shop_app/screens/products/products_screen.dart';
-
+import 'package:interiorx/screens/product/components/camera.dart';
 // import 'screens/cart/cart_screen.dart';
 // import 'screens/complete_profile/complete_profile_screen.dart';
 // import 'screens/details/details_screen.dart';
@@ -19,7 +19,7 @@ import 'screens/splash/splash_screen.dart';
 import 'screens/cart/demo_product_UI.dart';
 import 'screens/cart/cart_screen.dart';
 import 'screens/checkout/checkout_screen.dart';
-import 'screens/product/components/product_screen.dart';
+import 'screens/product/components/product_description_screen.dart';
 // We use name route
 // All our routes will be available here
 final Map<String, WidgetBuilder> routes = {
@@ -43,5 +43,6 @@ final Map<String, WidgetBuilder> routes = {
   HomeScreen.routeName: (context) => const HomeScreen(),
   LoginScreen.routeName: (context) => const LoginScreen(),
   SignupScreen.routeName: (context) => const SignupScreen(),
-  ProductDescriptionScreen.routeName: (context) => const ProductDescriptionScreen(),
+  ProductDescriptionScreen.routeName: (
+      context) => const ProductDescriptionScreen(),
 };
