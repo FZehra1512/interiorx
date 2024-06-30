@@ -1,4 +1,6 @@
 import 'package:flutter/widgets.dart';
+import 'package:interiorx/screens/login/login.dart';
+import 'package:interiorx/screens/signup/signup.dart';
 // import 'package:shop_app/screens/products/products_screen.dart';
 
 // import 'screens/cart/cart_screen.dart';
@@ -33,4 +35,6 @@ final Map<String, WidgetBuilder> routes = {
   // CartScreen.routeName: (context) => const CartScreen(),
   ProfileScreen.routeName: (context) => const ProfileScreen(),
   CheckoutScreen.routeName: (context) => const CheckoutScreen(),
+  LoginScreen.routeName: (context) => const LoginScreen(),
+  SignupScreen.routeName: (context) => const SignupScreen(),
 };
