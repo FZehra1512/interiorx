@@ -19,6 +19,20 @@ class _LoginScreenState extends State<LoginScreen> {
   String password = '';
   String errorMessage = '';
 
+  // Function to handle error messages
+  String getFriendlyErrorMessage(String errorCode) {
+    switch (errorCode) {
+      case 'user-not-found':
+        return 'No user found for that email.';
+      case 'wrong-password':
+        return 'Wrong password provided.';
+      case 'invalid-email':
+        return 'The email address is not valid.';
+      default:
+        return 'An unknown error occurred.';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,9 +102,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       password: password,
                     );
                     Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+                  } on FirebaseAuthException catch (e) {
+                    setState(() {
+                      errorMessage = getFriendlyErrorMessage(e.code);
+                    });
                   } catch (e) {
                     setState(() {
-                      errorMessage = e.toString();
+                      errorMessage = 'An unknown error occurred.';
                     });
                   }
                 },
