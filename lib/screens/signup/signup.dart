@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:interiorx/screens/home/home_screen.dart';
 import 'package:interiorx/screens/login/login.dart';
 
@@ -78,11 +79,25 @@ class _SignupScreenState extends State<SignupScreen> {
             ElevatedButton(
               child: const Text('Sign Up'),
               onPressed: () async {
+                // try {
+                //   await _auth.createUserWithEmailAndPassword(
+                //     email: email,
+                //     password: password,
+                //   );
+
                 try {
-                  await _auth.createUserWithEmailAndPassword(
+                  UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
                     email: email,
                     password: password,
                   );
+
+                  // Create a new document in Firestore
+                  await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+                    'email': email,
+                    // Add any other user data you want to store
+                    'createdAt': FieldValue.serverTimestamp(),
+                  });
+
                   Navigator.pushReplacementNamed(context, HomeScreen.routeName);
                 } on FirebaseAuthException catch (e) {
                   setState(() {
