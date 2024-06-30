@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:interiorx/screens/cart/cart_screen.dart';
+import 'package:interiorx/screens/cart/demo_product_UI.dart';
 import 'package:interiorx/screens/checkout/checkout_screen.dart';
 import 'package:interiorx/screens/login/login.dart';
 import 'package:interiorx/screens/profile/profile_screen.dart';
@@ -19,8 +21,27 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
-              onPressed: () {Navigator.pushNamed(context, CheckoutScreen.routeName);},
-              child: const Text("Checkout Page"),),
+            onPressed: () {
+                Navigator.pushNamed(context, CheckoutScreen.routeName);
+              },
+              child: const Text("Checkout Page"),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, DemoProductUIScreen.routeName);
+              },
+              child: const Text("Demo Product UI for Cart"),
+            ),
+            const SizedBox(height: 30,),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, CartScreen.routeName);
+              },
+              child: const Text("Cart"),
+            ),
             ElevatedButton(
               onPressed: () {Navigator.pushNamed(context, ProfileScreen.routeName);},
               child: const Text("Profile Page"),),
