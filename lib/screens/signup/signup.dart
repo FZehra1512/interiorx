@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:interiorx/screens/home/home_screen.dart';
 import 'package:interiorx/screens/login/login.dart';
+import 'package:interiorx/screens/userInfo/userInfo.dart';
 
 
 class SignupScreen extends StatefulWidget {
@@ -79,12 +80,6 @@ class _SignupScreenState extends State<SignupScreen> {
             ElevatedButton(
               child: const Text('Sign Up'),
               onPressed: () async {
-                // try {
-                //   await _auth.createUserWithEmailAndPassword(
-                //     email: email,
-                //     password: password,
-                //   );
-
                 try {
                   UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
                     email: email,
@@ -98,7 +93,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     'createdAt': FieldValue.serverTimestamp(),
                   });
 
-                  Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+                  Navigator.pushReplacementNamed(context, UserInfoScreen.routeName);
                 } on FirebaseAuthException catch (e) {
                   setState(() {
                     errorMessage = getFriendlyErrorMessage(e.code);
