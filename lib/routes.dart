@@ -1,14 +1,14 @@
 import 'package:flutter/widgets.dart';
-import 'package:interiorx/screens/home/home.dart';
 import 'package:interiorx/screens/login/login.dart';
 import 'package:interiorx/screens/signup/signup.dart';
+import 'package:interiorx/screens/userInfo/userInfo.dart';
 // import 'package:shop_app/screens/products/products_screen.dart';
 
 // import 'screens/cart/cart_screen.dart';
 // import 'screens/complete_profile/complete_profile_screen.dart';
 // import 'screens/details/details_screen.dart';
 // import 'screens/forgot_password/forgot_password_screen.dart';
-// import 'screens/home/home_screen.dart';
+import 'screens/home/home_screen.dart';
 // import 'screens/init_screen.dart';
 // import 'screens/login_success/login_success_screen.dart';
 // import 'screens/otp/otp_screen.dart';
@@ -26,6 +26,7 @@ import 'screens/cart/demo_product_UI.dart';
 import 'screens/cart/cart_screen.dart';
 import 'screens/checkout/checkout_screen.dart';
 
+
 // We use name route
 // All our routes will be available here
 final Map<String, WidgetBuilder> routes = {
@@ -37,7 +38,7 @@ final Map<String, WidgetBuilder> routes = {
   // SignUpScreen.routeName: (context) => const SignUpScreen(),
   // CompleteProfileScreen.routeName: (context) => const CompleteProfileScreen(),
   // OtpScreen.routeName: (context) => const OtpScreen(),
-  // HomeScreen.routeName: (context) => const HomeScreen(),
+  HomeScreen.routeName: (context) => const HomeScreen(),
   // ProductsScreen.routeName: (context) => const ProductsScreen(),
   // DetailsScreen.routeName: (context) => const DetailsScreen(),
   // CartScreen.routeName: (context) => const CartScreen(),
@@ -48,7 +49,7 @@ final Map<String, WidgetBuilder> routes = {
   DemoProductUIScreen.routeName: (context) => const DemoProductUIScreen(),
   CartScreen.routeName: (context) => const CartScreen(),
   CheckoutScreen.routeName: (context) => const CheckoutScreen(),
-  HomeScreen.routeName: (context) => const HomeScreen(),
   LoginScreen.routeName: (context) => const LoginScreen(),
   SignupScreen.routeName: (context) => const SignupScreen(),
+  UserInfoScreen.routeName: (context) => const UserInfoScreen(), // Add UserInfoScreen route
 };
