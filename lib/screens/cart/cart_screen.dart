@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interiorx/components/custom_card.dart';
 import 'package:provider/provider.dart';
 import 'package:interiorx/providers/cart_provider.dart';
 import 'package:interiorx/screens/checkout/checkout_screen.dart';
@@ -17,15 +18,10 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         // backgroundColor: kSecondaryColor,
         leading: buildBackIconButton(context),
-        // title: const Text('Your Cart', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
         title: const Text(
           "Cart",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
         ),
-        // bottom: PreferredSize(
-        //   preferredSize: const Size.fromHeight(10),
-        //   child: Text('${cartProvider.cartItems.length}  items'),
-        // ),
       ),
       body: cartProvider.cartItems.isEmpty
           ? Center(
@@ -80,19 +76,7 @@ class CartScreen extends StatelessWidget {
                       ),
                       child: const Icon(Icons.delete, color: Colors.white),
                     ),
-                    child: Container(
-                      margin: const EdgeInsets.all(8.0),
-                      padding: const EdgeInsets.all(14.0),
-                      decoration: BoxDecoration(
-                        color: kSecondaryColor,
-                        borderRadius: BorderRadius.circular(12.0),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 3,
-                              offset: const Offset(1, 1))
-                        ]),
+                    child: CustomCard(
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -265,7 +249,7 @@ class CartScreen extends StatelessWidget {
                     '${cartProvider.cartItems.length} items',
                     style: const TextStyle(fontSize: 16),
                   ),
-                  Text('Total: \$ ${cartProvider.totalPrice.toStringAsFixed(3)}',
+                  Text('Total: \$ ${cartProvider.totalPrice.toStringAsFixed(2)}',
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w600)),
                 ],
