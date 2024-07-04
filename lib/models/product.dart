@@ -41,6 +41,7 @@ class Product {
   final String productName;
   final String productDescription;
   final double productPrice;
+  final double salePerc;
   final String imageUrl;
   final double rating;
   final List<Review> reviews;
@@ -50,6 +51,7 @@ class Product {
     required this.productName,
     required this.productDescription,
     required this.productPrice,
+    required this.salePerc,
     required this.imageUrl,
     required this.rating,
     required this.reviews,
@@ -68,6 +70,7 @@ class Product {
       productName: data['pd_name'] ?? '',
       productDescription: data['pd_desc'] ?? '',
       productPrice: data['price'] ?? 0.0,
+      salePerc: data['sale_perc'] ?? 0.0,
       imageUrl: data['pd_img'] ?? '',
       rating: data['ratings'] ?? 0.0,
       reviews: reviews,

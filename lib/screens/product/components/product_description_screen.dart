@@ -228,7 +228,10 @@ class ProductDescriptionScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(40.0),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(40.0),
+                        topRight: Radius.circular(40.0),
+                      ),
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
@@ -256,12 +259,39 @@ class ProductDescriptionScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Price: \$${product.productPrice.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 4),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '\$${(product.productPrice * (1 - product.salePerc / 100)).toStringAsFixed(2)}',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    if (product.salePerc > 0)
+                                      Text(
+                                        ' ( \$${product.productPrice.toStringAsFixed(2)})',
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.grey,
+                                          decoration: TextDecoration.lineThrough,
+                                        ),
+                                      ),
+                                    if (product.salePerc > 0)
+                                      Text(
+                                        ' -${product.salePerc}%',
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ],
                             ),
                             Row(
                               children: [
@@ -282,7 +312,7 @@ class ProductDescriptionScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Availability: ${product.status}',
+                          '${product.status}',
                           style: TextStyle(
                             color: product.status == 'In stock' ? Colors.green : Colors.red,
                             fontWeight: FontWeight.bold,
@@ -307,7 +337,7 @@ class ProductDescriptionScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      '${review.date.day} ${review.date.month} ${review.date.year}',
+                                      '${review.date.day}/ ${review.date.month}/ ${review.date.year}',
                                       style: const TextStyle(
                                         fontSize: 12,
                                         color: Colors.grey,
@@ -361,4 +391,6 @@ class ProductDescriptionScreen extends StatelessWidget {
     );
   }
 }
+
+
 
