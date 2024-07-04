@@ -57,4 +57,6 @@ final Map<String, WidgetBuilder> routes = {
   OrderCompleteScreen.routeName: (context) => const OrderCompleteScreen(),
   ProductDescriptionScreen.routeName: (
       context) => const ProductDescriptionScreen(),
+
+  PagesAvailibityButtonScreen.routeName:(context) => const PagesAvailibityButtonScreen(),
 };

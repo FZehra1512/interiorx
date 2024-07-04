@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:interiorx/constants.dart';
 import 'package:interiorx/screens/login/login.dart';
@@ -97,15 +96,19 @@ class _SignupScreenState extends State<SignupScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 const SizedBox(height: 20),
-                SvgPicture.asset(
-                  'assets/interiorx-logo.svg',
-                  height: 110,
+                SizedBox(
+                  height: 150,
+                  child: Image.asset(
+                    "assets/images/InteriorX.png",
+                    fit: BoxFit.contain,
+                  ),
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'InteriorX',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontWeight: FontWeight.w200,
+                    fontWeight: FontWeight.w500,
                     fontSize: 20,
                   ),
                 ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:interiorx/constants.dart';
 import 'package:interiorx/screens/home/home_screen.dart';
 import 'package:interiorx/screens/signup/signup.dart';
@@ -53,15 +52,19 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               const SizedBox(height: 20),
-              SvgPicture.asset(
-                'assets/interiorx-logo.svg',
-                height: 110,
+              SizedBox(
+                height: 150,
+                child: Image.asset(
+                  "assets/images/InteriorX.png",
+                  fit: BoxFit.contain,
+                ),
               ),
+              const SizedBox(height: 10),
               const Text(
                 'InteriorX',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontWeight: FontWeight.w200,
+                  fontWeight: FontWeight.w500,
                   fontSize: 20,
                 ),
               ),
