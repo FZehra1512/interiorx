@@ -185,7 +185,11 @@ class _MyAccountState extends State<MyAccount> {
               padding: EdgeInsets.only(left: 20, right: 20),
               children: [
                 Center(
-                  child: ProfilePic(),
+                  child: ProfilePic(
+                    backgroundColor: Color(0xff37185d),
+                    size: 120,
+                    iconColor: Colors.white,
+                  ),
                 ),
                 Divider(height: 40, thickness: 2),
                 Row(
