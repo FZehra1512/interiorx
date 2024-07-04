@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:interiorx/screens/checkout/components/complete_order.dart';
 import 'package:interiorx/screens/login/login.dart';
 import 'package:interiorx/screens/signup/signup.dart';
 import 'package:interiorx/screens/userInfo/userInfo.dart';
@@ -48,8 +49,9 @@ final Map<String, WidgetBuilder> routes = {
   MyAccount.routeName: (context) => const MyAccount(),
   DemoProductUIScreen.routeName: (context) => const DemoProductUIScreen(),
   CartScreen.routeName: (context) => const CartScreen(),
-  CheckoutScreen.routeName: (context) => const CheckoutScreen(),
+  CheckoutScreen.routeName: (context) => CheckoutScreen(),
   LoginScreen.routeName: (context) => const LoginScreen(),
   SignupScreen.routeName: (context) => const SignupScreen(),
   UserInfoScreen.routeName: (context) => const UserInfoScreen(), // Add UserInfoScreen route
+  OrderCompleteScreen.routeName: (context) => const OrderCompleteScreen(),
 };
