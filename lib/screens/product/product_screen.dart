@@ -18,8 +18,11 @@ class ProductScreen extends StatelessWidget {final String category, type;
             return Center(child: Text('No products found'));}
           return Padding(padding: const EdgeInsets.all(20.0),
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1, childAspectRatio: 0.75,),
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200.0,
+                crossAxisSpacing: 8.0,
+                mainAxisSpacing: 8.0,
+                childAspectRatio: 1.0, ),
               itemCount: snapshot.data!.docs.length, itemBuilder: (context, index) {
                 var data = snapshot.data!.docs[index].data() as Map<String, dynamic>;
                 return ProductCard(
