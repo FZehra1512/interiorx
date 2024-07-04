@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:interiorx/constants.dart';
-//import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfilePic extends StatelessWidget {
+  final Color backgroundColor;
+  final double size;
+  final Color iconColor;
+  final IconData icon;
+
   const ProfilePic({
     super.key,
+    this.backgroundColor = kPrimaryColor,
+    this.size = 150,
+    this.iconColor = Colors.white,
+    this.icon = Icons.account_circle,
   });
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: kPrimaryColor,
+      backgroundColor: backgroundColor,
       child: Icon(
-        Icons.account_circle,
-        size: 150,
-        color: Colors.white,
+        icon,
+        size: size,
+        color: iconColor,
       ),
-      maxRadius: 80,
+      maxRadius: size / 2,
     );
   }
 }
