@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:interiorx/screens/home/home_screen.dart';
 import 'package:interiorx/screens/signup/signup.dart';
+import 'package:provider/provider.dart';
+import 'package:interiorx/providers/cart_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static String routeName = "/login";
@@ -14,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  
   final _auth = FirebaseAuth.instance;
   String email = '';
   String password = '';
@@ -24,8 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
     switch (errorCode) {
       case 'user-not-found':
         return 'No user found for that email.';
-      case 'wrong-password':
-        return 'Wrong password provided.';
+      case 'invalid-credential':
+        return 'Please enter valid credentials';
       case 'invalid-email':
         return 'The email address is not valid.';
       default:
@@ -35,13 +38,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.only(
-            left: 16.0,
-            right: 16.0,
+            left: 24.0,
+            right: 24.0,
             top: 16.0,
             bottom: MediaQuery.of(context).viewInsets.bottom + 16.0,
           ),
@@ -54,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 130,
               ),
               const Text(
-                'Interiorx',
+                'InteriorX',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w200,
@@ -82,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   });
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               TextField(
                 obscureText: true,
                 decoration: const InputDecoration(labelText: 'Password'),
@@ -92,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   });
                 },
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               ElevatedButton(
                 child: const Text('Login'),
                 onPressed: () async {
@@ -101,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       email: email,
                       password: password,
                     );
+                    cartProvider.clearCart();
                     Navigator.pushReplacementNamed(context, HomeScreen.routeName);
                   } on FirebaseAuthException catch (e) {
                     setState(() {
