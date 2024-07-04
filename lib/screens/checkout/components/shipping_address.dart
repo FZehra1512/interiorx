@@ -155,12 +155,7 @@ class _AddressModal extends State<AddressModal> {
           'Select Address',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        leading: buildBackIconButton(context)
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),

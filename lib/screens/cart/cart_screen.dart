@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:interiorx/components/custom_card.dart';
+import 'package:interiorx/screens/login/login.dart';
 import 'package:provider/provider.dart';
 import 'package:interiorx/providers/cart_provider.dart';
 import 'package:interiorx/screens/checkout/checkout_screen.dart';
@@ -260,9 +262,13 @@ class CartScreen extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                            Navigator.pushNamed(
-                                context, CheckoutScreen.routeName);
-                          },
+                    if (FirebaseAuth.instance.currentUser != null) {
+                      Navigator.pushNamed(context, CheckoutScreen.routeName);
+                    } else {
+                      Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+                    }
+                    
+                  },
                   child: const Text(
                     'Checkout',
                     style: TextStyle(fontSize: 18),

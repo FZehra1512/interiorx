@@ -26,6 +26,7 @@ class AppTheme {
         errorBorder: outlineInputBorderError,
         focusedErrorBorder: outlineInputBorderError,
         border: outlineInputBorder,
+        labelStyle: TextStyle(fontSize: 22, color: kTextColor, fontWeight: FontWeight.w500),
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       elevatedButtonTheme: ElevatedButtonThemeData(

@@ -13,19 +13,32 @@ class UserInfoScreen extends StatefulWidget {
 }
 
 class _UserInfoScreenState extends State<UserInfoScreen> {
-  final _formKey = GlobalKey<FormState>();
   String name = '';
   String address = '';
-  // String gender = 'Male';
   String phone = '';
-  String city = 'Karachi';
-  // DateTime? dob;
+  String? _selectedCity;
+  List<String> cities = [
+    'Karachi',
+    'Lahore',
+    'Islamabad',
+    'Peshawar',
+    'Quetta',
+    'Hyderabad',
+    'Rawalpindi',
+    'Faisalabad'
+  ];
+  String errorMessage = '';
+
+  bool isValidName(String name) => name.isNotEmpty;
+  bool isValidPhone(String phone) => phone.isNotEmpty;
+  bool isValidAddress(String address) => address.isNotEmpty;
+  bool isValidCity(String? city) => city != null;
 
   Future<void> updateUserProfile({
     required String name,
     required String phone,
     required String address,
-    required String city,
+    required String? city,
   }) async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
@@ -46,147 +59,125 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             .update({
           'name': name,
           'phone': phone,
-          'gender': 'N/A',
-          'DOB': 'N/A',
           'address': addressMap,
         });
         Navigator.pushReplacementNamed(context, HomeScreen.routeName);
       }
     } catch (e) {
-      // Handle any errors here
-      print('Error updating user profile: $e');
+      setState(() {
+        errorMessage = 'An unknown error occurred.';
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('User Info')),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-          child: Form(
-            key: _formKey,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.account_circle, size: 150, color: kPrimaryLightColor),
+                const Icon(Icons.account_circle,
+                    size: 100, color: kPrimaryLightColor),
                 const Text(
                   'Profile Information',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 40),
                 TextFormField(
+                  keyboardType: TextInputType.name,
                   decoration: const InputDecoration(labelText: 'Name'),
                   onChanged: (value) {
                     setState(() {
                       name = value;
                     });
                   },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return null;
-                  },
                 ),
                 const SizedBox(height: 15),
                 TextFormField(
+                  keyboardType: TextInputType.phone,
                   decoration: const InputDecoration(labelText: 'Phone'),
                   onChanged: (value) {
                     setState(() {
                       phone = value;
                     });
                   },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your phone number';
-                    }
-                    return null;
-                  },
                 ),
                 const SizedBox(height: 15),
                 TextFormField(
+                  keyboardType: TextInputType.streetAddress,
                   decoration: const InputDecoration(labelText: 'Address'),
                   onChanged: (value) {
                     setState(() {
                       address = value;
                     });
                   },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your address';
-                    }
-                    return null;
-                  },
                 ),
                 const SizedBox(height: 15),
-                DropdownButtonFormField(
-                  value: city,
-                  decoration: const InputDecoration(labelText: 'City'),
-                  items: ['Karachi', 'Lahore', 'Islamabad', 'Peshawar', 'Quetta', 'Hyderabad', 'Rawalpindi', 'Faisalabad']
-                      .map((label) => DropdownMenuItem(
-                            value: label,
-                            child: Text(label),
-                          ))
-                      .toList(),
-                  onChanged: (value) {
+                DropdownButtonFormField<String>(
+                  value: _selectedCity,
+                  decoration: const InputDecoration(
+                    labelText: 'City',
+                    border: OutlineInputBorder(),
+                  ),
+                  items: cities.map((String city) {
+                    return DropdownMenuItem<String>(
+                      value: city,
+                      child: Text(
+                        city,
+                        style: const TextStyle(color: kTextColor),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
                     setState(() {
-                      city = value!;
+                      _selectedCity = newValue;
                     });
                   },
                 ),
-                // DropdownButtonFormField(
-                //   value: gender,
-                //   decoration: const InputDecoration(labelText: 'Gender'),
-                //   items: ['Male', 'Female']
-                //       .map((label) => DropdownMenuItem(
-                //             child: Text(label),
-                //             value: label,
-                //           ))
-                //       .toList(),
-                //   onChanged: (value) {
-                //     setState(() {
-                //       gender = value!;
-                //     });
-                //   },
-                // ),
-                
-                
-                // TextFormField(
-                //   decoration: const InputDecoration(labelText: 'Date of Birth'),
-                //   onTap: () async {
-                //     FocusScope.of(context).requestFocus(FocusNode());
-                //     DateTime? pickedDate = await showDatePicker(
-                //       context: context,
-                //       initialDate: DateTime.now(),
-                //       firstDate: DateTime(1900),
-                //       lastDate: DateTime(2101),
-                //     );
-                //     if (pickedDate != null) {
-                //       setState(() {
-                //         dob = pickedDate;
-                //       });
-                //     }
-                //   },
-                //   validator: (value) {
-                //     if (dob == null) {
-                //       return 'Please select your date of birth';
-                //     }
-                //     return null;
-                //   },
-                //   readOnly: true,
-                //   controller: TextEditingController(
-                //     text: dob == null ? '' : '${dob!.toLocal()}'.split(' ')[0],
-                //   ),
-                // ),
+                const SizedBox(height: 10),
+                if (errorMessage.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      errorMessage,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ),
                 const SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: () {
-                    updateUserProfile(name: name, phone: phone, address: address, city: city);
+                  onPressed: () async {
+                    if (!isValidName(name)) {
+                      setState(() {
+                        errorMessage = 'Please enter your name';
+                      });
+                    } else if (!isValidPhone(phone)) {
+                      setState(() {
+                        errorMessage = 'Please enter your phone number';
+                      });
+                    } else if (!isValidAddress(address)) {
+                      setState(() {
+                        errorMessage = 'Please enter your address';
+                      });
+                    } else if (!isValidCity(_selectedCity)) {
+                      setState(() {
+                        errorMessage = 'Please select your city';
+                      });
+                    } else {
+                      await updateUserProfile(
+                          name: name,
+                          phone: phone,
+                          address: address,
+                          city: _selectedCity);
+                    }
                   },
                   child: const Text('Submit'),
                 ),
+                
               ],
             ),
           ),
