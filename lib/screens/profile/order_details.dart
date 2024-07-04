@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:interiorx/components/custom_app_bar.dart';
+import 'package:interiorx/constants.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:interiorx/screens/profile/add_review.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   final String orderId;
@@ -7,7 +11,7 @@ class OrderDetailsScreen extends StatelessWidget {
   final String time;
   final String status;
   final String paymentMethod;
-  final String deliveryAddress;
+  final Map<String, dynamic> deliveryAddress;
   final double totalAmount;
   final List<Map<String, dynamic>> products; // List of products
   final bool isHistory; // To differentiate between current and history orders
@@ -35,67 +39,72 @@ class OrderDetailsScreen extends StatelessWidget {
           children: [
             Text(
               'Items',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            ...products.map((product) {
+              double productPrice = (product['price'] as num).toDouble();
+              int productQuantity = product['quantity'];
+              double totalPrice = productPrice * productQuantity;
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.grey.shade300),
+                  ),
+                  child: ListTile(
+                    leading: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: SvgPicture.asset(
+                        'assets/interiorx-logo.svg',
+                        fit: BoxFit.cover,
+                      ),
+                      // child: Image.network(
+                      //   product['https://ibb.co/c3tyWpF'],
+                      //   fit: BoxFit.cover,
+                      // ),
+                    ),
+                    title: Text(product['name']),
+                    trailing: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            'Rs ${productPrice.toStringAsFixed(2)} x $productQuantity = Rs ${totalPrice.toStringAsFixed(2)}'),
+                        // Text(
+                        //     'x $productQuantity = Rs ${totalPrice.toStringAsFixed(2)}'),
+                      ],
+                    ),
+                    contentPadding: EdgeInsets.all(10),
+                    tileColor: kSecondaryColor,
+                  ),
+                ),
+              );
+            }).toList(),
+            SizedBox(height: 20),
+            Text(
+              'Order Details',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
-            ...products.map((product) => ListTile(
-                  leading: Image.network(product['image']),
-                  title: Text(product['name']),
-                  trailing: Text(
-                      'Rs ${(product['price'] * product['quantity']).toStringAsFixed(2)}'),
-                )),
-            SizedBox(height: 20),
             Card(
-              margin: EdgeInsets.all(8.0),
+              color: kSecondaryColor,
+              margin: EdgeInsets.all(2),
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Order Details',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Order ID:'), Text('$orderId')],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Order Date & Time:'),
-                        Text('$date at $time')
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Status:'), Text('$status')],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Payment Method:'),
-                        Text('$paymentMethod')
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Delivery Address:'),
-                        Text('$deliveryAddress')
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Total Amount:'),
-                        Text('Rs ${totalAmount.toStringAsFixed(2)}')
-                      ],
-                    ),
+                    _buildDetailRow('Order ID:', orderId),
+                    _buildDetailRow('Order Date & Time:', '$date at $time'),
+                    _buildDetailRow('Status:', status),
+                    _buildDetailRow('Payment Method:', paymentMethod),
+                    _buildDetailRow(
+                        'Delivery Address:', deliveryAddress['address']),
+                    Divider(height: 15),
+                    _buildDetailRow('Total Amount:',
+                        'Rs ${totalAmount.toStringAsFixed(2)}'),
                   ],
                 ),
               ),
@@ -103,8 +112,22 @@ class OrderDetailsScreen extends StatelessWidget {
             if (isHistory) ...[
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  // Feedback action
+                onPressed: () async {
+                  User? user = FirebaseAuth.instance.currentUser;
+                  if (user != null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SelectProductForReviewScreen(
+                          products: products,
+                          userId: user.uid,
+                        ),
+                      ),
+                    );
+                  } else {
+                    // Handle user not logged in
+                    print('User not logged in');
+                  }
                 },
                 child: Text('Feedback'),
               ),
@@ -120,13 +143,34 @@ class OrderDetailsScreen extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Feedback action
+                  // Cancel order action
                 },
                 child: Text('Cancel Order'),
               ),
-            ]
+            ],
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildDetailRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
+          SizedBox(width: 40),
+          Flexible(
+            child: Text(
+              value,
+              textAlign: TextAlign.end,
+              overflow: TextOverflow.visible,
+              softWrap: true,
+            ),
+          ),
+        ],
       ),
     );
   }

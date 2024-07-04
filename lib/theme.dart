@@ -23,6 +23,8 @@ class AppTheme {
         contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
         enabledBorder: outlineInputBorder,
         focusedBorder: outlineInputBorder,
+        errorBorder: outlineInputBorderError,
+        focusedErrorBorder: outlineInputBorderError,
         border: outlineInputBorder,
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -44,6 +46,12 @@ class AppTheme {
 const OutlineInputBorder outlineInputBorder = OutlineInputBorder(
   borderRadius: BorderRadius.all(Radius.circular(28)),
   borderSide: BorderSide(color: kTextColor),
+  gapPadding: 10,
+);
+
+const OutlineInputBorder outlineInputBorderError = OutlineInputBorder(
+  borderRadius: BorderRadius.all(Radius.circular(28)),
+  borderSide: BorderSide(color: Color.fromARGB(255, 203, 88, 88)),
   gapPadding: 10,
 );
 

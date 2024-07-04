@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -38,11 +39,11 @@ class ProfileScreen extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const MyOrders()));
               },
             ),
-            MenuCard(
-              text: "Settings",
-              icon: Icon(Icons.settings),
-              press: () {},
-            ),
+            // MenuCard(
+            //   text: "Settings",
+            //   icon: Icon(Icons.settings),
+            //   press: () {},
+            // ),
             MenuCard(
               text: "Help Center",
               icon: Icon(Icons.help_center),
@@ -51,7 +52,9 @@ class ProfileScreen extends StatelessWidget {
             MenuCard(
               text: "Log Out",
               icon: Icon(Icons.logout),
-              press: () {},
+              press: () async {
+                await FirebaseAuth.instance.signOut();
+              },
             ),
           ],
         ),
