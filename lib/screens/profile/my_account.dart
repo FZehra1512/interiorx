@@ -44,9 +44,18 @@ class _MyAccountState extends State<MyAccount> {
           _userData!['DOB'] =
               '${dobDateTime.year}-${dobDateTime.month}-${dobDateTime.day}';
         }
+        // Handle nested address field
+        if (_userData != null && _userData!.containsKey('address')) {
+          Map<String, dynamic> addressMap = _userData!['address'];
+          if (addressMap.containsKey('address_1')) {
+            Map<String, dynamic> address1 = addressMap['address_1'];
+            _userData!['address'] = address1['address'];
+          }
+        }
       });
     } catch (e) {
       print('Error fetching user data: $e');
+      debugPrintStack();
     }
   }
 
@@ -61,6 +70,14 @@ class _MyAccountState extends State<MyAccount> {
         print('Error parsing date: $e');
         return;
       }
+    }
+
+    // Handle nested address field for updating
+    if (newData.containsKey('address')) {
+      Map<String, dynamic> addressMap = {
+        'address_1': {'address': newData['address']}
+      };
+      newData['address'] = addressMap;
     }
 
     try {
@@ -103,8 +120,14 @@ class _MyAccountState extends State<MyAccount> {
                     _buildTextFormField('Phone',
                         updatedData['phone']?.toString() ?? '', updatedData),
                   ] else if (section == 'Personal Information') ...[
-                    _buildTextFormField('Address',
-                        updatedData['address']?.toString() ?? '', updatedData),
+                    _buildTextFormField(
+                        'Address',
+                        (updatedData['address'] != null &&
+                                updatedData['address'] is Map &&
+                                updatedData['address'].containsKey('address_1'))
+                            ? updatedData['address']['address_1']['address']
+                            : '',
+                        updatedData),
                     SizedBox(
                       height: 30,
                     ),
@@ -250,7 +273,14 @@ class _MyAccountState extends State<MyAccount> {
                 ),
                 ListTile(
                   title: Text('Gender'),
-                  subtitle: Text(_userData!['gender'] ?? 'N/A'),
+                  subtitle: Text(
+                    (_userData != null &&
+                            _userData!.containsKey('address') &&
+                            _userData!['address'] is Map &&
+                            _userData!['address'].containsKey('address_1'))
+                        ? _userData!['address']['address_1']['address']
+                        : 'N/A',
+                  ),
                 ),
                 ListTile(
                   title: Text('Date of Birth'),
