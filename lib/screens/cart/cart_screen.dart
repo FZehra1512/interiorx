@@ -145,8 +145,7 @@ class CartScreen extends StatelessWidget {
                                 height: 18,
                               ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
@@ -193,9 +192,10 @@ class CartScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(width: 65),
-                                  const Text(
-                                    '\$ ',
+                                  // const SizedBox(width: 60),
+                                  Row(children: [
+                                    const Text(
+                                    'Rs. ',
                                     style: TextStyle(
                                         color: kPrimaryColor,
                                         fontSize: 16,
@@ -209,6 +209,8 @@ class CartScreen extends StatelessWidget {
                                         fontWeight: FontWeight.w600),
                                   ),
                                   const SizedBox(width: 12),
+                                  ],),
+                                  
                                 ],
                               )
                             ],
@@ -249,7 +251,7 @@ class CartScreen extends StatelessWidget {
                     '${cartProvider.cartItems.length} items',
                     style: const TextStyle(fontSize: 16),
                   ),
-                  Text('Total: \$ ${cartProvider.totalPrice.toStringAsFixed(2)}',
+                  Text('Total: Rs. ${cartProvider.totalPrice.toStringAsFixed(2)}',
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w600)),
                 ],

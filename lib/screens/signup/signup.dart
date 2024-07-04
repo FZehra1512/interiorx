@@ -43,8 +43,8 @@ class _SignupScreenState extends State<SignupScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.only(
-            left: 16.0,
-            right: 16.0,
+            left: 24.0,
+            right: 24.0,
             top: 16.0,
             bottom: MediaQuery.of(context).viewInsets.bottom + 16.0,
           ),
@@ -57,7 +57,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 130,
               ),
               const Text(
-                'Interiorx',
+                'InteriorX',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w200,
@@ -85,7 +85,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   });
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               TextField(
                 obscureText: true,
                 decoration: const InputDecoration(labelText: 'Password'),
@@ -95,7 +95,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   });
                 },
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               ElevatedButton(
                 child: const Text('Sign Up'),
                 onPressed: () async {

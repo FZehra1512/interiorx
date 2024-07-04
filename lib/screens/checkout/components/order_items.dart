@@ -12,7 +12,7 @@ class OrderItemsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    final isCartNotEmpty = cartProvider.cartItems.isNotEmpty;
     return CustomCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,15 +41,23 @@ class OrderItemsSection extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10,),
+          isCartNotEmpty ? 
           ListView.builder(
             shrinkWrap: true,
             itemCount: 2,
             itemBuilder: (context, index) {
-              final item = cartProvider.cartItems[index];
+              final item = cartProvider.cartItems[0];
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0),
-                child: CartItemWidget(imageUrl: item.imageUrl, name: item.name, price: item.price, quantity: item.quantity,));
-            })
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  child: CartItemWidget(
+                    imageUrl: item.imageUrl,
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity,
+                  ));
+            }
+          )
+        : Container()
         ],
       ),
     );
@@ -139,7 +147,7 @@ class CartItemWidget extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Row(children: [
-                const Text("\$ ", style: textStyle),
+                const Text("Rs. ", style: textStyle),
                 Text("$price ", style: const TextStyle(color: kTextColor, fontSize: 15, fontWeight: FontWeight.w500),),
                 const Text(" x ", style: textStyle,),
                 Text(" $quantity ", style: const TextStyle(color: kTextColor, fontSize: 15, fontWeight: FontWeight.w500),),
