@@ -38,11 +38,11 @@ class ProfileScreen extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const MyOrders()));
               },
             ),
-            MenuCard(
-              text: "Settings",
-              icon: Icon(Icons.settings),
-              press: () {},
-            ),
+            // MenuCard(
+            //   text: "Settings",
+            //   icon: Icon(Icons.settings),
+            //   press: () {},
+            // ),
             MenuCard(
               text: "Help Center",
               icon: Icon(Icons.help_center),
