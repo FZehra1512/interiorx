@@ -11,10 +11,7 @@ class SplashScreen extends StatefulWidget {
   static String routeName = "/splash";
 
   const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
+  State<SplashScreen> createState() => _SplashScreenState();}
 
 class _SplashScreenState extends State<SplashScreen> {
   int currentPage = 0;
@@ -28,14 +25,9 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, CheckoutScreen.routeName);
-              },
-              child: const Text("Checkout Page"),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
+              onPressed: () {Navigator.pushNamed(context, CheckoutScreen.routeName);},
+              child: const Text("Checkout Page"),),
+            const SizedBox(height: 30,),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, DemoProductUIScreen.routeName);
@@ -50,12 +42,11 @@ class _SplashScreenState extends State<SplashScreen> {
               child: const Text("Cart"),
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, ProfileScreen.routeName);
-              },
-              child: const Text("Profile Page"),
-            ),
+              onPressed: () {Navigator.pushNamed(context, ProfileScreen.routeName);},
+              child: const Text("Profile Page"),),
             ElevatedButton(
+              onPressed: () {Navigator.pushNamed(context, LoginScreen.routeName);},
+              child: const Text("Login Page"),),
               onPressed: () {
                 Navigator.pushNamed(context, LoginScreen.routeName);
               },
