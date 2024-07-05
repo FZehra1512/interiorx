@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:interiorx/components/custom_app_bar.dart';
 import 'package:interiorx/screens/profile/components/menu_card.dart';
 import 'package:interiorx/screens/profile/components/profile_pic.dart';
+import 'package:interiorx/screens/profile/help_center.dart';
 import 'package:interiorx/screens/profile/my_account.dart';
 import 'package:interiorx/screens/profile/my_orders.dart';
 
@@ -47,7 +48,12 @@ class ProfileScreen extends StatelessWidget {
             MenuCard(
               text: "Help Center",
               icon: Icon(Icons.help_center),
-              press: () {},
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HelpCenter()));
+              },
             ),
             MenuCard(
               text: "Log Out",
