@@ -17,6 +17,10 @@
 
 // lib/models/product.dart
 
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
+
 class Review {
   final String comment;
   final DateTime date;
@@ -38,6 +42,8 @@ class Review {
 }
 
 class Product {
+  final String id;
+  final String category;
   final String productName;
   final String productDescription;
   final double productPrice;
@@ -48,6 +54,8 @@ class Product {
   final String status; // New field for product status
 
   Product({
+    required this.id,
+    required this.category,
     required this.productName,
     required this.productDescription,
     required this.productPrice,
@@ -67,12 +75,14 @@ class Product {
     }
 
     return Product(
+      id: data['id'] ?? '',
+      category: data['category'] ?? "",
       productName: data['pd_name'] ?? '',
       productDescription: data['pd_desc'] ?? '',
-      productPrice: data['price'] ?? 0.0,
-      salePerc: data['sale_perc'] ?? 0.0,
+      productPrice: (data['price'] as num).toDouble() ?? 0.0,
+      salePerc: (data['sale_perc'] as num).toDouble()  ?? 10.0,
       imageUrl: data['pd_img'] ?? '',
-      rating: data['ratings'] ?? 0.0,
+      rating: (data['ratings'] as num).toDouble()  ?? 0.0,
       reviews: reviews,
       status: data['status'] ?? '', // Assign status from data
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interiorx/screens/login/login.dart';
 import 'package:interiorx/screens/profile/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:interiorx/components/icon_btn_with_counter.dart';
@@ -34,5 +35,5 @@ class IconBar extends StatelessWidget {
           press: () => Navigator.pushNamed(context, ProfileScreen.routeName),),
         IconButton(icon: const Icon(Icons.logout), color: kTextColor,
           onPressed: () async {await FirebaseAuth.instance.signOut();
-          Navigator.pushReplacementNamed(context, SplashScreen.routeName);},),
+          Navigator.pushReplacementNamed(context, LoginScreen.routeName);},),
       ],),);}}

@@ -104,13 +104,15 @@ class HistoryOrdersScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              'Order ID: ${order['orderId'].substring(0, 5)}...',
+                              'Order ID: ${order['orderId']}',
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold)),
-                          Text('${order['date']} - ${order['time']}',
-                              style: TextStyle(fontSize: 14)),
+                          // Text('${order['date']} - ${order['time']}',
+                          //     style: TextStyle(fontSize: 14)),
                         ],
                       ),
+                      Text('${order['date']} - ${order['time']}',
+                          style: TextStyle(fontSize: 14)),
                       SizedBox(height: 16),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
