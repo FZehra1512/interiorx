@@ -77,11 +77,15 @@ flutter:
   uses-material-design: true
   assets:
     - assets/interiorx-logo.svg
+    - assets/images/products/
+    - assets/images/products/product1.jfif
+    - assets/images/products/product2.jfif
+    - assets/images/products/product3.jfif
 
   # To add assets to your application, add an assets section, like this:
 
     - assets/images/
-    - assets/icons/
+    #- assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
