@@ -17,7 +17,6 @@ class HistoryOrdersScreen extends StatelessWidget {
           await FirebaseFirestore.instance
               .collection('orders')
               .where('userId', isEqualTo: userId)
-              .where('userId', isEqualTo: userId)
               .where('status', isEqualTo: 'delivered')
               .get();
 
