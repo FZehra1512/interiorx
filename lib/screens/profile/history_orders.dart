@@ -13,20 +13,10 @@ class HistoryOrdersScreen extends StatelessWidget {
     try {
       debugPrint('Fetching orders for user: $userId');
 
-      DocumentSnapshot<Map<String, dynamic>> userDocSnapshot =
-          await FirebaseFirestore.instance.doc('users/$userId').get();
-
-      if (!userDocSnapshot.exists) {
-        debugPrint('User document does not exist for user: $userId');
-        return deliveredOrders;
-      }
-
-      DocumentReference<Map<String, dynamic>> userRef =
-          userDocSnapshot.reference;
-
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
           await FirebaseFirestore.instance
               .collection('orders')
+              .where('userId', isEqualTo: userId)
               .where('userId', isEqualTo: userId)
               .where('status', isEqualTo: 'delivered')
               .get();
