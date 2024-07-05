@@ -114,7 +114,7 @@ class CurrentOrdersScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              'Order ID: ${order['orderId'].substring(0, 10)}...',
+                              'Order ID: ${order['orderId'].substring(0, 5)}...',
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold)),
                           Text('${order['date']} - ${order['time']}',
