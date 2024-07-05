@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:interiorx/components/cart_icon_button.dart';
+import 'package:interiorx/constants.dart';
+import 'package:interiorx/screens/login/login.dart';
+import 'package:interiorx/screens/profile/profile_screen.dart';
 import '../../components/product_card.dart';
 import '../../components/home_header.dart';
 import '../../components/iconbar.dart';
+import 'package:interiorx/components/icon_btn_with_counter.dart';
+import 'package:provider/provider.dart';
+import 'package:interiorx/screens/cart/cart_screen.dart';
+import 'package:interiorx/providers/cart_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'components/categories.dart';
 import 'components/highlights.dart';
 import '../../components/recommendations.dart';
@@ -15,14 +24,15 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
-      body: SafeArea(
+      body: const SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               HomeHeader(),
-              IconBar(),
+              // IconBar(),
               SizedBox(height: 20),
               Categories(),
               SizedBox(height: 20),
@@ -50,6 +60,44 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: kSecondaryColor,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: IconBtnWithCounter(
+              svgSrc: Icons.home,
+              color: kTextColor,
+              press: () => Navigator.pushNamed(context, HomeScreen.routeName),
+            ),
+            label: 'Home',
+          ),
+          const BottomNavigationBarItem(
+            icon: CartButton(),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: IconBtnWithCounter(
+              svgSrc: Icons.person_rounded,
+              color: kTextColor,
+              press: () =>
+                  Navigator.pushNamed(context, ProfileScreen.routeName),
+            ),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: IconButton(
+              icon: const Icon(Icons.logout),
+              color: kTextColor,
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+              },
+            ),
+            label: 'Logout',
+          ),
+        ],
       ),
     );
   }

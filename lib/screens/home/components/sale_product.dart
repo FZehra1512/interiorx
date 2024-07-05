@@ -29,6 +29,7 @@ class SaleProduct extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var data = snapshot.data!.docs[index].data() as Map<String, dynamic>;
                   return ProductCard(
+                    id: snapshot.data!.docs[index].id,
                     name: data['pd_name'] ?? 'No Name',
                     desc: data['pd_desc'] ?? 'No Description',
                     img: data['pd_img'] ?? 'https://via.placeholder.com/150',

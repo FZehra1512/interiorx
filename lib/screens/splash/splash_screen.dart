@@ -180,6 +180,12 @@ class _PagesAvailibityButtonScreenState
               },
               child: const Text("Login Page"),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, HomeScreen.routeName);
+              },
+              child: const Text("Home Page"),
+            ),
           ],
         ),
       ),
