@@ -22,13 +22,13 @@ class OrderItemsSection extends StatelessWidget {
             children: [
               const Text('Order Items', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
               Container(
-                child: cartProvider.cartItems.length > 2
+                child: cartProvider.cartItems.length > 1
                     ? GestureDetector(
                         onTap: () {
                           showMaterialModalBottomSheet(
                             context: context,
                             builder: (context) => SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.9,
+                              height: MediaQuery.of(context).size.height * 0.8,
                               child: AllItemsModal(cartProvider: cartProvider,),
                             )
                           );
@@ -44,7 +44,7 @@ class OrderItemsSection extends StatelessWidget {
           isCartNotEmpty ? 
           ListView.builder(
             shrinkWrap: true,
-            itemCount: 2,
+            itemCount: 1,
             itemBuilder: (context, index) {
               final item = cartProvider.cartItems[0];
               return Padding(

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:interiorx/constants.dart';
 import 'package:interiorx/screens/home/home_screen.dart';
 import 'package:interiorx/screens/signup/signup.dart';
 import 'package:provider/provider.dart';
 import 'package:interiorx/providers/cart_provider.dart';
+
 
 class LoginScreen extends StatefulWidget {
   static String routeName = "/login";
@@ -16,7 +17,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  
   final _auth = FirebaseAuth.instance;
   String email = '';
   String password = '';
@@ -36,32 +36,35 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  // Function to validate email
+  bool isValidEmail(String email) {
+    return RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+  }
+
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: SafeArea(
+      body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(
-            left: 24.0,
-            right: 24.0,
-            top: 16.0,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 16.0,
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               const SizedBox(height: 20),
-              SvgPicture.asset(
-                'assets/interiorx-logo.svg',
-                height: 130,
+              SizedBox(
+                height: 150,
+                child: Image.asset(
+                  "assets/images/InteriorX.png",
+                  fit: BoxFit.contain,
+                ),
               ),
+              const SizedBox(height: 10),
               const Text(
                 'InteriorX',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontWeight: FontWeight.w200,
+                  fontWeight: FontWeight.w500,
                   fontSize: 20,
                 ),
               ),
@@ -98,23 +101,39 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 30),
               ElevatedButton(
-                child: const Text('Login'),
+                child: const Text('Login', style: TextStyle(fontSize: 18),),
                 onPressed: () async {
-                  try {
-                    await _auth.signInWithEmailAndPassword(
-                      email: email,
-                      password: password,
-                    );
-                    cartProvider.clearCart();
-                    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
-                  } on FirebaseAuthException catch (e) {
+                  if (email.isEmpty || password.isEmpty) {
                     setState(() {
-                      errorMessage = getFriendlyErrorMessage(e.code);
+                      errorMessage = 'Please fill in all fields';
                     });
-                  } catch (e) {
+                  } else if (!isValidEmail(email)) {
                     setState(() {
-                      errorMessage = 'An unknown error occurred.';
+                      errorMessage = 'Invalid email address';
                     });
+                  } else if (password.length < 6) {
+                    setState(() {
+                      errorMessage =
+                          'Password should be at least 6 characters long';
+                    });
+                  } else {
+                    try {
+                      await _auth.signInWithEmailAndPassword(
+                        email: email,
+                        password: password,
+                      );
+                      cartProvider.clearCart();
+                      Navigator.pushReplacementNamed(
+                          context, HomeScreen.routeName);
+                    } on FirebaseAuthException catch (e) {
+                      setState(() {
+                        errorMessage = getFriendlyErrorMessage(e.code);
+                      });
+                    } catch (e) {
+                      setState(() {
+                        errorMessage = 'An unknown error occurred.';
+                      });
+                    }
                   }
                 },
               ),
@@ -126,13 +145,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: const TextStyle(color: Colors.red),
                   ),
                 ),
-              const SizedBox(height: 20),
-              TextButton(
-                child: const Text("Don't have an account? Register here"),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, SignupScreen.routeName);
-                },
-              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have an account? ", style: TextStyle(color: kTextColor, fontSize: 16, fontWeight: FontWeight.w500),),
+                  GestureDetector(
+                    onTap: () {Navigator.pushReplacementNamed(context, SignupScreen.routeName);},
+                    child: const Text('Register here',
+                        style: TextStyle(color: kPrimaryColor, fontSize: 16, fontWeight: FontWeight.w600)),
+                  ),
+                ],
+              )
             ],
           ),
         ),

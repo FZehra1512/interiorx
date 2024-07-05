@@ -33,6 +33,7 @@ dependencies:
 #
   google_fonts: 6.2.0
   flutter_svg: ^2.0.10+1
+  # google_fonts: ^6.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -48,10 +49,14 @@ dependencies:
   cloud_firestore: ^4.8.1
   modal_bottom_sheet: ^3.0.0
   intl: ^0.17.0
+  google_sign_in: ^5.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  camera: ^0.10.0+1
+  path_provider: ^2.0.11
+  path: ^1.8.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -78,7 +83,7 @@ flutter:
     - assets/images/products/product3.jfif
 
   # To add assets to your application, add an assets section, like this:
-  #assets:
+
     - assets/images/
     #- assets/icons/
 
